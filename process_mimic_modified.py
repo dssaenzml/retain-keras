@@ -52,7 +52,7 @@ if __name__ == '__main__':
     infd.readline()
     for line in infd:
         tokens = line.strip().split(',')
-        pid = int(tokens[1])
+        pid = tokens[1].astype(int)
         dod_hosp = tokens[5]
         if len(dod_hosp) > 0:
             pid_dod_map[pid] = 1
@@ -67,8 +67,8 @@ if __name__ == '__main__':
     infd.readline()
     for line in infd:
         tokens = line.strip().split(',')
-        pid = int(tokens[1])
-        adm_id = int(tokens[2])
+        pid = tokens[1].astype(int)
+        adm_id = tokens[2].astype(int)
         adm_time = datetime.strptime(tokens[3], '%Y-%m-%d %H:%M:%S')
         adm_date_map[adm_id] = adm_time
         if pid in pid_adm_map: pid_adm_map[pid].append(adm_id)
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     infd.readline()
     for line in infd:
         tokens = line.strip().split(',')
-        adm_id = int(tokens[2])
+        adm_id = tokens[2].astype(int)
         dx_str = 'D_' + convert_to_icd9(tokens[4][1:-1])
         dx_str_3digit = 'D_' + convert_to_3digit_icd9(tokens[4][1:-1])
 
